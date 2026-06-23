@@ -1,9 +1,4 @@
-# ============================================================
-# MySQL — Deployment + Service
-# Usa secretKeyRef en lugar de value: en texto plano
-# ============================================================
-
-apiVersion: apps/v1
+﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
@@ -53,10 +48,6 @@ spec:
           volumeMounts:
             - name: mysql-data
               mountPath: /var/lib/mysql
-          # readinessProbe real: verifica que MySQL acepta conexiones,
-          # no solo que el proceso está corriendo. Esto permite que
-          # "kubectl rollout status deployment/mysql" sirva como el
-          # equivalente del depends_on + healthcheck del docker-compose.
           readinessProbe:
             exec:
               command:
